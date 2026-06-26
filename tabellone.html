@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Mega Tabellone — Campo Estivo 2026</title>
+  <link rel="icon" href="assets/66.png" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.gif" alt="Un Bambino per Amico" />
+        <span class="brand-text"><b>Campo Estivo 2026</b><span>Un Bambino per Amico</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="programma.html">Programma</a>
+        <a href="tabellone.html">Tabellone</a>
+        <a href="laboratori.html">Laboratori</a>
+        <a href="gruppi.html">Gruppi</a>
+        <a href="educatori.html">Educatori</a>
+        <a href="stanze.html">Stanze</a>
+        <a href="info.html">Organizzazione</a>
+      </nav>
+    </div>
+  </header>
+  <div class="rainbow-bar"></div>
+
+  <main>
+    <section class="section">
+      <h1>📋 Mega Tabellone delle attività</h1>
+      <p class="lead">Tutta la settimana in un colpo d'occhio. Pensato per essere stampato in grande formato e appeso in struttura.</p>
+
+      <div class="legend">
+        <span><i class="a-routine"></i> Routine</span>
+        <span><i class="a-pasto"></i> Pasti</span>
+        <span><i class="a-lab"></i> Laboratorio</span>
+        <span><i class="a-spiaggia"></i> Spiaggia</span>
+        <span><i class="a-relax"></i> Relax / Attività</span>
+        <span><i class="a-serata"></i> Serata</span>
+        <span><i class="a-special"></i> Speciale</span>
+        <span><i class="a-gita"></i> Gita / Evento</span>
+      </div>
+
+      <div class="tabellone-wrap">
+        <table class="tabellone" id="board"></table>
+      </div>
+
+      <p class="note">Balli di gruppo in spiaggia ogni giorno: <b>11:00–11:30</b> e <b>18:00–18:30</b>. Ogni gruppo prepara una <b>performance per l'ultima sera</b> (sabato 25).</p>
+
+      <div class="no-print" style="text-align:center;margin-top:18px">
+        <button onclick="window.print()" style="background:var(--magenta);color:#fff;border:0;padding:12px 26px;border-radius:999px;font-weight:700;font-size:1rem;cursor:pointer">🖨️ Stampa il tabellone</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <img src="assets/logo.gif" alt="Un Bambino per Amico" /><br />
+    <b>Un Bambino per Amico</b> — Campo Estivo 2026<br />
+    Portale organizzativo interno · <a href="https://www.unbambinoperamico.org/" target="_blank" rel="noopener">unbambinoperamico.org</a>
+  </footer>
+
+  <script src="assets/main.js"></script>
+  <script>
+  // ---- Dati del tabellone (facili da modificare) ----
+  var giorni = [
+    { d: "Dom 19", n: "Arrivo" },
+    { d: "Lun 20", n: "" },
+    { d: "Mar 21", n: "" },
+    { d: "Mer 22", n: "" },
+    { d: "Gio 23", n: "" },
+    { d: "Ven 24", n: "" },
+    { d: "Sab 25", n: "Saluti" }
+  ];
+
+  // a() = crea una cella attività { testo, sotto, classe }
+  function a(t, s, c) { return { t: t, s: s || "", c: c || "a-routine" }; }
+
+  // Attività standard usate nei giorni feriali
+  var STD = {
+    sveglia:  a("Sveglia", "08:00", "a-routine"),
+    colaz:    a("Colazione", "08:30", "a-pasto"),
+    lab1:     a("Laboratorio", "Grandi e Piccoli", "a-lab"),
+    spiag1:   a("Spiaggia", "balli 11:00", "a-spiaggia"),
+    pranzo:   a("Pranzo", "13:00", "a-pasto"),
+    relax:    a("Attività / Relax", "", "a-relax"),
+    lab2:     a("Laboratorio", "", "a-lab"),
+    spiag2:   a("Spiaggia", "balli 18:00", "a-spiaggia"),
+    cena:     a("Cena", "20:00", "a-pasto"),
+    letto:    a("A letto", "23:00", "a-routine")
+  };
+
+  // Righe: ogni riga ha un orario e una funzione che, dato l'indice del giorno, ritorna la cella
+  var righe = [
+    { ora: "08:00",        get: function(i){ return STD.sveglia; } },
+    { ora: "08:30",        get: function(i){ return STD.colaz; } },
+    { ora: "09:00–10:30",  get: function(i){
+        if (i===0) return a("Arrivo & sistemazione", "accoglienza", "a-special");
+        if (i===6) return a("Prove performance", "ultimo giorno", "a-special");
+        return STD.lab1;
+      } },
+    { ora: "10:45–12:30",  get: function(i){
+        if (i===0) return a("—", "", "a-routine");
+        return STD.spiag1;
+      } },
+    { ora: "13:00",        get: function(i){ return STD.pranzo; } },
+    { ora: "14:30–15:30",  get: function(i){
+        if (i===0) return a("Sistemazione stanze", "", "a-special");
+        return STD.relax;
+      } },
+    { ora: "15:30–16:45",  get: function(i){
+        if (i===0) return a("Conoscenza & regole", "", "a-special");
+        if (i===6) return a("Pulizie & valigie", "", "a-special");
+        return STD.lab2;
+      } },
+    { ora: "16:45–18:45",  get: function(i){
+        if (i===6) return a("Ultima spiaggia", "balli 18:00", "a-spiaggia");
+        return STD.spiag2;
+      } },
+    { ora: "20:00",        get: function(i){ return STD.cena; } },
+    { ora: "21:00–22:30",  get: function(i){
+        var serate = [
+          a("Presentazioni 🎵", "in struttura", "a-serata"),
+          a("Caccia al tesoro 🗺️", "", "a-serata"),
+          a("Giochi di gruppo 🎲", "", "a-serata"),
+          a("Mirabilandia / Karaoke 🎤", "da confermare", "a-gita"),
+          a("Karaoke 🎶", "", "a-serata"),
+          a("Serata in spiaggia 🏖️", "falò", "a-serata"),
+          a("Sfilata + Restituzione ✨", "performance", "a-special")
+        ];
+        return serate[i];
+      } },
+    { ora: "23:00",        get: function(i){
+        if (i===6) return a("A letto", "ultima notte", "a-routine");
+        return STD.letto;
+      } }
+  ];
+
+  // ---- Render ----
+  (function(){
+    var t = document.getElementById("board");
+    var thead = "<thead><tr><th class='time-col'>Orario</th>";
+    giorni.forEach(function(g){
+      thead += "<th>" + g.d + (g.n ? "<br><small style='font-weight:400;opacity:.8'>" + g.n + "</small>" : "") + "</th>";
+    });
+    thead += "</tr></thead>";
+
+    var tbody = "<tbody>";
+    righe.forEach(function(r){
+      tbody += "<tr><td class='time'>" + r.ora + "</td>";
+      giorni.forEach(function(g, i){
+        var c = r.get(i);
+        tbody += "<td><div class='act " + c.c + "'>" + c.t +
+                 (c.s ? "<small>" + c.s + "</small>" : "") + "</div></td>";
+      });
+      tbody += "</tr>";
+    });
+    tbody += "</tbody>";
+
+    t.innerHTML = thead + tbody;
+  })();
+  </script>
+</body>
+</html>

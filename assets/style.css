@@ -1,0 +1,272 @@
+/* ============================================================
+   Un Bambino per Amico — Campo Estivo 2026
+   Foglio di stile condiviso
+   ============================================================ */
+
+:root {
+  /* Palette ripresa dal logo (arcobaleno) */
+  --rosso:    #e8312a;
+  --arancio:  #f58220;
+  --giallo:   #ffd200;
+  --verde:    #39b54a;
+  --azzurro:  #27aae1;
+  --blu:      #2e3192;
+  --magenta:  #ec008c;
+  --rosa:     #f06eaa;
+
+  --scuro:    #2b2b3a;
+  --grigio:   #6b6b7b;
+  --chiaro:   #f5f6fa;
+  --bianco:   #ffffff;
+  --bordo:    #e6e7ee;
+
+  --ombra:    0 6px 24px rgba(40, 40, 80, .10);
+  --ombra-sm: 0 2px 10px rgba(40, 40, 80, .08);
+  --raggio:   18px;
+  --raggio-sm:12px;
+
+  --font: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--scuro);
+  background: var(--chiaro);
+  line-height: 1.55;
+}
+
+/* Barra arcobaleno decorativa */
+.rainbow-bar {
+  height: 7px;
+  background: linear-gradient(90deg,
+    var(--rosso) 0 12.5%, var(--arancio) 0 25%, var(--giallo) 0 37.5%,
+    var(--verde) 0 50%, var(--azzurro) 0 62.5%, var(--blu) 0 75%,
+    var(--magenta) 0 87.5%, var(--rosa) 0 100%);
+}
+
+/* ---------- Header / Navigazione ---------- */
+header.site-header {
+  background: var(--bianco);
+  box-shadow: var(--ombra-sm);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.nav-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.brand img { height: 52px; width: auto; }
+.brand .brand-text { line-height: 1.05; }
+.brand .brand-text b { color: var(--scuro); font-size: 1.05rem; display: block; }
+.brand .brand-text span { color: var(--magenta); font-size: .82rem; font-weight: 600; }
+
+nav.main-nav { display: flex; flex-wrap: wrap; gap: 4px; }
+nav.main-nav a {
+  text-decoration: none;
+  color: var(--scuro);
+  font-weight: 600;
+  font-size: .92rem;
+  padding: 8px 14px;
+  border-radius: 999px;
+  transition: background .15s, color .15s;
+}
+nav.main-nav a:hover { background: var(--chiaro); }
+nav.main-nav a.active { background: var(--blu); color: #fff; }
+
+.nav-toggle {
+  display: none;
+  background: var(--blu); color: #fff; border: 0;
+  font-size: 1.4rem; line-height: 1; border-radius: 10px;
+  padding: 6px 12px; cursor: pointer;
+}
+
+/* ---------- Layout ---------- */
+main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 64px; }
+.section { margin-bottom: 44px; }
+h1 { font-size: 2rem; margin: 0 0 6px; }
+h2 { font-size: 1.45rem; margin: 0 0 16px; display: flex; align-items: center; gap: 10px; }
+h2 .dot { width: 14px; height: 14px; border-radius: 50%; flex: none; }
+h3 { font-size: 1.1rem; margin: 0 0 8px; }
+p.lead { color: var(--grigio); font-size: 1.05rem; margin-top: 0; }
+
+a { color: var(--blu); }
+
+/* ---------- Hero ---------- */
+.hero {
+  background: linear-gradient(135deg, #ffffff 0%, #eef3ff 100%);
+  border-radius: var(--raggio);
+  padding: 40px 34px;
+  box-shadow: var(--ombra);
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 28px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero h1 { font-size: 2.6rem; line-height: 1.05; }
+.hero .kicker {
+  display: inline-block;
+  background: var(--giallo);
+  color: var(--scuro);
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: .85rem;
+  margin-bottom: 14px;
+}
+.hero img.hero-logo { width: 100%; max-width: 360px; justify-self: center; }
+
+/* Countdown */
+.countdown { display: flex; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
+.countdown .box {
+  background: #fff; border-radius: var(--raggio-sm);
+  padding: 12px 18px; text-align: center; box-shadow: var(--ombra-sm);
+  min-width: 78px;
+}
+.countdown .box b { font-size: 1.8rem; display: block; color: var(--blu); }
+.countdown .box span { font-size: .75rem; text-transform: uppercase; color: var(--grigio); letter-spacing: .5px; }
+
+/* ---------- Card ---------- */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; }
+.card {
+  background: #fff; border-radius: var(--raggio);
+  padding: 22px; box-shadow: var(--ombra-sm);
+  text-decoration: none; color: inherit; display: block;
+  border-top: 5px solid var(--azzurro);
+  transition: transform .15s, box-shadow .15s;
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--ombra); }
+.card .ico { font-size: 2rem; }
+.card h3 { margin: 8px 0 4px; }
+.card p { margin: 0; color: var(--grigio); font-size: .92rem; }
+
+/* ---------- Pannelli / box ---------- */
+.panel {
+  background: #fff; border-radius: var(--raggio);
+  padding: 24px; box-shadow: var(--ombra-sm); margin-bottom: 22px;
+}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+.note {
+  background: #fff8e1; border-left: 5px solid var(--giallo);
+  padding: 14px 18px; border-radius: var(--raggio-sm); margin: 14px 0;
+}
+.note.todo { background: #fdeef5; border-left-color: var(--magenta); }
+.tag {
+  display: inline-block; font-size: .72rem; font-weight: 700;
+  padding: 3px 10px; border-radius: 999px; color: #fff; margin-left: 6px;
+}
+
+/* ---------- Tabelle ---------- */
+table { width: 100%; border-collapse: collapse; background: #fff; border-radius: var(--raggio-sm); overflow: hidden; }
+.table-wrap { overflow-x: auto; box-shadow: var(--ombra-sm); border-radius: var(--raggio-sm); }
+th, td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--bordo); font-size: .93rem; }
+th { background: var(--blu); color: #fff; font-weight: 600; }
+tbody tr:nth-child(even) { background: #fafbff; }
+td.time { font-weight: 700; color: var(--blu); white-space: nowrap; }
+
+/* ---------- Mega Tabellone ---------- */
+.tabellone-wrap { overflow-x: auto; box-shadow: var(--ombra); border-radius: var(--raggio); }
+table.tabellone { min-width: 920px; border-radius: var(--raggio); }
+table.tabellone th { background: var(--scuro); text-align: center; position: sticky; top: 0; }
+table.tabellone th.time-col { background: var(--blu); }
+table.tabellone td { vertical-align: top; border: 1px solid var(--bordo); padding: 8px; }
+table.tabellone td.time { text-align: center; background: #f0f2fb; font-size: .82rem; }
+.act {
+  border-radius: 9px; padding: 7px 9px; color: #fff; font-size: .82rem;
+  font-weight: 600; margin-bottom: 4px; line-height: 1.25;
+}
+.act small { display: block; font-weight: 400; opacity: .92; }
+
+/* colori attività */
+.a-spiaggia  { background: var(--azzurro); }
+.a-lab       { background: var(--verde); }
+.a-pasto     { background: var(--arancio); }
+.a-serata    { background: var(--magenta); }
+.a-relax     { background: var(--rosa); }
+.a-routine   { background: var(--grigio); }
+.a-special   { background: var(--blu); }
+.a-gita      { background: var(--rosso); }
+
+/* legenda */
+.legend { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; font-size: .85rem; font-weight: 600; }
+.legend i { width: 16px; height: 16px; border-radius: 5px; display: inline-block; }
+
+/* ---------- Liste nomi ---------- */
+.namelist { columns: 3; column-gap: 22px; }
+.namelist .year-block { break-inside: avoid; margin-bottom: 14px; }
+.namelist .year-block b { color: var(--magenta); display: block; margin-bottom: 4px; border-bottom: 2px solid var(--bordo); }
+.namelist ul { margin: 0; padding-left: 18px; }
+.namelist li { font-size: .9rem; }
+.pill-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+.pill-list li { background: var(--chiaro); border-radius: 999px; padding: 6px 14px; font-size: .9rem; font-weight: 600; }
+
+/* stat */
+.stats { display: flex; gap: 16px; flex-wrap: wrap; margin: 14px 0; }
+.stat { background: #fff; border-radius: var(--raggio-sm); padding: 16px 22px; box-shadow: var(--ombra-sm); text-align: center; }
+.stat b { font-size: 2rem; display: block; color: var(--blu); }
+.stat span { color: var(--grigio); font-size: .85rem; }
+
+/* ---------- Stanze ---------- */
+.rooms { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.room {
+  background: #fff; border-radius: var(--raggio-sm); padding: 16px;
+  box-shadow: var(--ombra-sm); border-top: 5px solid var(--verde);
+}
+.room h4 { margin: 0 0 6px; display: flex; justify-content: space-between; align-items: center; }
+.room .cap { font-size: .75rem; color: var(--grigio); font-weight: 600; }
+.room ol { margin: 6px 0 0; padding-left: 20px; }
+.room li { font-size: .88rem; }
+.room.empty { border-top-color: var(--bordo); color: var(--grigio); font-style: italic; }
+
+/* ---------- Footer ---------- */
+footer.site-footer {
+  background: var(--scuro); color: #c9c9d6; text-align: center;
+  padding: 30px 20px; font-size: .9rem;
+}
+footer.site-footer img { height: 46px; filter: brightness(0) invert(1); opacity: .9; margin-bottom: 8px; }
+footer.site-footer a { color: var(--rosa); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; text-align: center; }
+  .hero img.hero-logo { max-width: 260px; }
+  .countdown { justify-content: center; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .namelist { columns: 2; }
+  nav.main-nav {
+    display: none; width: 100%; flex-direction: column; padding-top: 8px;
+  }
+  nav.main-nav.open { display: flex; }
+  .nav-toggle { display: block; }
+}
+@media (max-width: 520px) {
+  .namelist { columns: 1; }
+  .hero h1 { font-size: 2rem; }
+}
+
+/* ---------- Stampa ---------- */
+@media print {
+  header.site-header, footer.site-footer, .nav-toggle, .no-print { display: none !important; }
+  body { background: #fff; }
+  .panel, .card, table { box-shadow: none; }
+  .tabellone-wrap { overflow: visible; }
+  table.tabellone { min-width: 0; width: 100%; font-size: .7rem; }
+  .act { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

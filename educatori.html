@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Area Educatori — Campo Estivo 2026</title>
+  <link rel="icon" href="assets/66.png" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    .picker { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:8px; }
+    .picker select {
+      font-size:1.05rem; padding:12px 16px; border-radius:999px; border:2px solid var(--bordo);
+      background:#fff; font-family:var(--font); font-weight:600; color:var(--scuro); min-width:240px;
+    }
+    .edu-card { background:#fff; border-radius:var(--raggio); box-shadow:var(--ombra); overflow:hidden; }
+    .edu-head { padding:24px 28px; color:#fff; display:flex; align-items:center; gap:18px; }
+    .edu-head .avatar { width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,.25);
+      display:flex; align-items:center; justify-content:center; font-size:1.8rem; font-weight:800; flex:none; }
+    .edu-head h2 { margin:0; color:#fff; font-size:1.8rem; }
+    .edu-head p { margin:2px 0 0; opacity:.95; }
+    .edu-body { padding:24px 28px; }
+    .duties { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; margin-bottom:22px; }
+    .duty { background:var(--chiaro); border-radius:var(--raggio-sm); padding:14px 16px; }
+    .duty b { display:block; font-size:.75rem; text-transform:uppercase; letter-spacing:.5px; color:var(--grigio); }
+    .duty span { font-size:1.05rem; font-weight:700; }
+    tr.hl td { background:#eafaf0 !important; }
+    tr.hl td.act-name b { color:var(--verde); }
+    .star { color:var(--giallo); }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.gif" alt="Un Bambino per Amico" />
+        <span class="brand-text"><b>Campo Estivo 2026</b><span>Un Bambino per Amico</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="programma.html">Programma</a>
+        <a href="tabellone.html">Tabellone</a>
+        <a href="laboratori.html">Laboratori</a>
+        <a href="gruppi.html">Gruppi</a>
+        <a href="educatori.html">Educatori</a>
+        <a href="stanze.html">Stanze</a>
+        <a href="info.html">Organizzazione</a>
+      </nav>
+    </div>
+  </header>
+  <div class="rainbow-bar"></div>
+
+  <main>
+    <section class="section">
+      <h1>🧑‍🏫 Area Educatori</h1>
+      <p class="lead">Scegli il tuo nome per vedere la <b>tua</b> giornata: gruppo, laboratori di cui sei responsabile, turni e orari.</p>
+
+      <div class="picker no-print">
+        <label for="sel" style="font-weight:700">Sono:</label>
+        <select id="sel"><option value="">— scegli il tuo nome —</option></select>
+      </div>
+
+      <div id="out"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <img src="assets/logo.gif" alt="Un Bambino per Amico" /><br />
+    <b>Un Bambino per Amico</b> — Campo Estivo 2026<br />
+    Portale organizzativo interno · <a href="https://www.unbambinoperamico.org/" target="_blank" rel="noopener">unbambinoperamico.org</a>
+  </footer>
+
+  <script src="assets/main.js"></script>
+  <script>
+  // ===== Dati educatori (facili da modificare) =====
+  // fascia: "Grandi" | "Piccoli"
+  // colore: tinta dell'intestazione
+  // gruppo: testo sottogruppo (se previsto)
+  // lab: laboratorio di cui è responsabile (parola chiave per evidenziare la riga)
+  // extra: array di compiti aggiuntivi
+  var EDU = [
+    { nome:"Mattia",   fascia:"Grandi", gruppo:"Sez. A · Gruppo 1", colore:"--verde" },
+    { nome:"Elvedina", fascia:"Grandi", gruppo:"Sez. A · Gruppo 1", colore:"--verde" },
+    { nome:"Mirko",    fascia:"Grandi", gruppo:"Sez. A · Gruppo 2", colore:"--verde" },
+    { nome:"Bobana",   fascia:"Grandi", gruppo:"Sez. A · Gruppo 2", colore:"--verde" },
+    { nome:"Alice",    fascia:"Grandi", gruppo:"Sez. B · Gruppo 3", colore:"--blu" },
+    { nome:"Greg",     fascia:"Grandi", gruppo:"Sez. B · Gruppo 3", colore:"--blu" },
+    { nome:"Bea",      fascia:"Grandi", gruppo:"Sez. B · Gruppo 4", colore:"--blu" },
+    { nome:"Perica",   fascia:"Grandi", gruppo:"Sez. B · Gruppo 4", colore:"--blu" },
+    { nome:"Claudio",  fascia:"Grandi", lab:"Musica", labNome:"Musica / Danza", colore:"--magenta", extra:["Attività di riflessione e storie con i ragazzi"] },
+    { nome:"Nella",    fascia:"Grandi", lab:"Teatro",  labNome:"Teatro", colore:"--rosso" },
+    { nome:"Danilo",   fascia:"Grandi", lab:"Inglese", labNome:"Inglese", colore:"--azzurro" },
+    { nome:"Eugenio",  fascia:"Grandi", lab:"Inglese", labNome:"Inglese", colore:"--azzurro" },
+    { nome:"Monica",   fascia:"Piccoli", lab:"Circo", labNome:"Circo", colore:"--giallo" },
+    { nome:"Alle",     fascia:"Piccoli", lab:"Circo", labNome:"Circo", colore:"--giallo" },
+    { nome:"Jasmin",   fascia:"Piccoli", lab:"Intercultura", labNome:"Intercultura", colore:"--blu" },
+    { nome:"Irene",    fascia:"Piccoli", lab:"Arte", labNome:"Arte", colore:"--verde" },
+    { nome:"Paolo",    fascia:"Piccoli", colore:"--arancio", extra:["Turno giochi in spiaggia"] },
+    { nome:"Sam",      fascia:"Piccoli", colore:"--arancio", extra:["Turno giochi in spiaggia"] },
+    { nome:"Euge",     fascia:"Piccoli", colore:"--arancio", extra:["Turno giochi in spiaggia"] }
+  ];
+
+  // Orari per fascia. tipo: "lab"|"spiaggia"|"pasto"|"serata"|"relax"|"routine"
+  var ORARI = {
+    Grandi: [
+      { o:"08:00",        t:"Sveglia", tipo:"routine" },
+      { o:"08:30",        t:"Colazione", tipo:"pasto" },
+      { o:"09:00–10:30",  t:"Laboratorio: Teatro (A·B) / Inglese (C·D)", tipo:"lab" },
+      { o:"10:45–12:30",  t:"Spiaggia (balli di gruppo 11:00)", tipo:"spiaggia" },
+      { o:"13:00",        t:"Pranzo", tipo:"pasto" },
+      { o:"14:30–15:15",  t:"Inglese (A·B) / Teatro (C·D)", tipo:"lab" },
+      { o:"15:15–16:45",  t:"Musica / Danza (tutti i gruppi)", tipo:"lab" },
+      { o:"16:45–18:45",  t:"Spiaggia (balli di gruppo 18:00)", tipo:"spiaggia" },
+      { o:"20:00",        t:"Cena", tipo:"pasto" },
+      { o:"21:00–22:30",  t:"Serata con il proprio gruppo", tipo:"serata" },
+      { o:"23:00",        t:"A letto i ragazzi · Riunione educatori Grandi", tipo:"routine" }
+    ],
+    Piccoli: [
+      { o:"08:00",        t:"Sveglia", tipo:"routine" },
+      { o:"08:30",        t:"Colazione", tipo:"pasto" },
+      { o:"09:00–10:30",  t:"Laboratorio del giorno", tipo:"lab" },
+      { o:"10:45–12:30",  t:"Spiaggia (balli di gruppo 11:00)", tipo:"spiaggia" },
+      { o:"13:00",        t:"Pranzo", tipo:"pasto" },
+      { o:"14:30–15:30",  t:"Attività / Relax", tipo:"relax" },
+      { o:"15:30–16:30",  t:"Laboratorio", tipo:"lab" },
+      { o:"16:45–18:45",  t:"Spiaggia (balli di gruppo 18:00)", tipo:"spiaggia" },
+      { o:"20:00",        t:"Cena", tipo:"pasto" },
+      { o:"21:00–22:30",  t:"Serata con il proprio gruppo", tipo:"serata" },
+      { o:"23:00",        t:"A letto", tipo:"routine" }
+    ]
+  };
+
+  var sel = document.getElementById("sel");
+  EDU.slice().sort(function(a,b){ return a.nome.localeCompare(b.nome); })
+     .forEach(function(e){
+        var o = document.createElement("option");
+        o.value = e.nome; o.textContent = e.nome + " — " + e.fascia;
+        sel.appendChild(o);
+     });
+
+  function cssVar(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  function render(nome){
+    var out = document.getElementById("out");
+    if (!nome){ out.innerHTML = ""; return; }
+    var e = EDU.find(function(x){ return x.nome === nome; });
+    var col = cssVar(e.colore) || "#2e3192";
+
+    var duties = "";
+    duties += duty("Fascia", e.fascia);
+    if (e.gruppo) duties += duty("Gruppo", e.gruppo);
+    if (e.labNome) duties += duty("Responsabile lab", e.labNome);
+    if (e.extra) e.extra.forEach(function(x){ duties += duty("Compito", x); });
+
+    var rows = ORARI[e.fascia].map(function(r){
+      var hl = (e.lab && r.tipo==="lab" && r.t.indexOf(e.lab)>=0) ? "hl" : "";
+      var note = "";
+      if (hl) note = " <span class='star'>★</span> <b style='color:var(--verde)'>tocca a te ("+e.labNome+")</b>";
+      return "<tr class='"+hl+"'><td class='time'>"+r.o+"</td><td class='act-name'>"+r.t+note+"</td></tr>";
+    }).join("");
+
+    out.innerHTML =
+      "<div class='edu-card'>" +
+        "<div class='edu-head' style='background:"+col+"'>" +
+          "<div class='avatar'>"+nome.charAt(0)+"</div>" +
+          "<div><h2>"+nome+"</h2><p>"+ (e.gruppo || (e.labNome ? "Responsabile "+e.labNome : "Educatore "+e.fascia)) +"</p></div>" +
+        "</div>" +
+        "<div class='edu-body'>" +
+          "<div class='duties'>"+duties+"</div>" +
+          "<h3>La tua giornata</h3>" +
+          "<div class='table-wrap'><table><thead><tr><th style='width:130px'>Orario</th><th>Attività</th></tr></thead><tbody>"+rows+"</tbody></table></div>" +
+          "<p class='note'>Mercoledì gli orari dei laboratori cambiano leggermente (vedi <a href='programma.html'>Programma</a>). Le serate variano ogni giorno: controlla il <a href='tabellone.html'>Tabellone</a>.</p>" +
+          "<div class='no-print' style='margin-top:14px'><button onclick='window.print()' style='background:"+col+";color:#fff;border:0;padding:10px 22px;border-radius:999px;font-weight:700;cursor:pointer'>🖨️ Stampa la mia giornata</button></div>" +
+        "</div>" +
+      "</div>";
+  }
+  function duty(label, val){ return "<div class='duty'><b>"+label+"</b><span>"+val+"</span></div>"; }
+
+  sel.addEventListener("change", function(){ render(this.value); });
+  </script>
+</body>
+</html>
