@@ -50,7 +50,8 @@
         <table class="tabellone" id="board"></table>
       </div>
 
-      <p class="note">Balli di gruppo in spiaggia ogni giorno: <b>11:00–11:30</b> e <b>18:00–18:30</b>. Ogni gruppo prepara una <b>performance per l'ultima sera</b> (sabato 25).</p>
+      <p class="note">🎢 <b>Mercoledì 22</b> si esce per l'intera giornata a <b>Mirabilandia</b>: colazione, partenza, pranzo al parco e rientro in tempo per la cena.</p>
+      <p class="note">Balli di gruppo in spiaggia (negli altri giorni): <b>11:00–11:30</b> e <b>18:00–18:30</b>. Ogni gruppo prepara una <b>performance per l'ultima sera</b> (sabato 25).</p>
 
       <div class="no-print" style="text-align:center;margin-top:18px">
         <button onclick="window.print()" style="background:var(--magenta);color:#fff;border:0;padding:12px 26px;border-radius:999px;font-weight:700;font-size:1rem;cursor:pointer">🖨️ Stampa il tabellone</button>
@@ -71,7 +72,7 @@
     { d: "Dom 19", n: "Arrivo" },
     { d: "Lun 20", n: "" },
     { d: "Mar 21", n: "" },
-    { d: "Mer 22", n: "" },
+    { d: "Mer 22", n: "Mirabilandia 🎢" },
     { d: "Gio 23", n: "" },
     { d: "Ven 24", n: "" },
     { d: "Sab 25", n: "Saluti" }
@@ -100,24 +101,32 @@
     { ora: "08:30",        get: function(i){ return STD.colaz; } },
     { ora: "09:00–10:30",  get: function(i){
         if (i===0) return a("Arrivo & sistemazione", "accoglienza", "a-special");
+        if (i===3) return a("Partenza per Mirabilandia 🚌", "dopo colazione", "a-gita");
         if (i===6) return a("Prove performance", "ultimo giorno", "a-special");
         return STD.lab1;
       } },
     { ora: "10:45–12:30",  get: function(i){
         if (i===0) return a("—", "", "a-routine");
+        if (i===3) return a("Mirabilandia 🎢", "parco divertimenti", "a-gita");
         return STD.spiag1;
       } },
-    { ora: "13:00",        get: function(i){ return STD.pranzo; } },
+    { ora: "13:00",        get: function(i){
+        if (i===3) return a("Pranzo al parco", "Mirabilandia", "a-gita");
+        return STD.pranzo;
+      } },
     { ora: "14:30–15:30",  get: function(i){
         if (i===0) return a("Sistemazione stanze", "", "a-special");
+        if (i===3) return a("Mirabilandia 🎢", "parco divertimenti", "a-gita");
         return STD.relax;
       } },
     { ora: "15:30–16:45",  get: function(i){
         if (i===0) return a("Conoscenza & regole", "", "a-special");
+        if (i===3) return a("Mirabilandia 🎢", "parco divertimenti", "a-gita");
         if (i===6) return a("Pulizie & valigie", "", "a-special");
         return STD.lab2;
       } },
     { ora: "16:45–18:45",  get: function(i){
+        if (i===3) return a("Rientro dal parco 🚌", "in tempo per cena", "a-gita");
         if (i===6) return a("Ultima spiaggia", "balli 18:00", "a-spiaggia");
         return STD.spiag2;
       } },
@@ -127,7 +136,7 @@
           a("Presentazioni 🎵", "in struttura", "a-serata"),
           a("Caccia al tesoro 🗺️", "", "a-serata"),
           a("Giochi di gruppo 🎲", "", "a-serata"),
-          a("Mirabilandia / Karaoke 🎤", "da confermare", "a-gita"),
+          a("Serata libera / relax 🌙", "dopo la gita", "a-relax"),
           a("Karaoke 🎶", "", "a-serata"),
           a("Serata in spiaggia 🏖️", "falò", "a-serata"),
           a("Sfilata + Restituzione ✨", "performance", "a-special")
