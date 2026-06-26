@@ -202,6 +202,20 @@ table.tabellone td.time { text-align: center; background: #f0f2fb; font-size: .8
 .a-routine   { background: var(--grigio); }
 .a-special   { background: var(--blu); }
 .a-gita      { background: var(--rosso); }
+.a-mirab     { background: linear-gradient(90deg, var(--rosso), var(--arancio), var(--giallo), var(--verde), var(--azzurro), var(--blu), var(--magenta)); }
+.a-festival  { background: linear-gradient(90deg, var(--magenta), var(--arancio)); }
+
+/* Tabellone con i giorni nelle righe (stile programma cartaceo) */
+table.tabellone td.day-cell { background: var(--blu); color: #fff; font-weight: 700; white-space: nowrap; text-align: center; vertical-align: middle; }
+table.tabellone td.day-cell small { display: block; font-weight: 400; opacity: .85; font-size: .72rem; }
+table.tabellone th.th-mattino    { background: var(--arancio); }
+table.tabellone th.th-pomeriggio { background: var(--azzurro); }
+table.tabellone th.th-sera       { background: var(--blu); }
+table.tabellone th.th-slot       { background: #3a3a4d; font-weight: 600; font-size: .8rem; }
+table.tabellone th .th-meal      { display: block; font-weight: 400; font-size: .72rem; opacity: .9; }
+table.tabellone td.cell          { text-align: center; vertical-align: middle; }
+.act.a-mirab    { font-size: 1.35rem; font-weight: 800; letter-spacing: 4px; padding: 16px 8px; text-shadow: 0 1px 2px rgba(0,0,0,.25); }
+.act.a-festival { font-weight: 800; letter-spacing: .5px; text-transform: uppercase; }
 
 /* legenda */
 .legend { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }

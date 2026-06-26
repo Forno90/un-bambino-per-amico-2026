@@ -33,26 +33,109 @@
   <main>
     <section class="section">
       <h1>📋 Mega Tabellone delle attività</h1>
-      <p class="lead">Tutta la settimana in un colpo d'occhio. Pensato per essere stampato in grande formato e appeso in struttura.</p>
+      <p class="lead">Tutta la settimana in un colpo d'occhio: i giorni nelle righe, le fasce della giornata nelle colonne. Pensato per essere stampato in grande formato e appeso in struttura.</p>
 
       <div class="legend">
-        <span><i class="a-routine"></i> Routine</span>
-        <span><i class="a-pasto"></i> Pasti</span>
-        <span><i class="a-lab"></i> Laboratorio</span>
-        <span><i class="a-spiaggia"></i> Spiaggia</span>
-        <span><i class="a-relax"></i> Relax / Attività</span>
+        <span><i class="a-lab"></i> Laboratori</span>
+        <span><i class="a-spiaggia"></i> Spiaggia / giochi</span>
+        <span><i class="a-relax"></i> Riposo</span>
         <span><i class="a-serata"></i> Serata</span>
-        <span><i class="a-special"></i> Speciale</span>
-        <span><i class="a-gita"></i> Gita / Evento</span>
+        <span><i class="a-mirab"></i> Mirabilandia</span>
+        <span><i class="a-festival"></i> Festival</span>
+        <span><i class="a-special"></i> Arrivo / Partenza</span>
       </div>
 
       <div class="tabellone-wrap">
-        <table class="tabellone" id="board"></table>
+        <table class="tabellone">
+          <thead>
+            <tr>
+              <th rowspan="2" class="time-col">GIORNO</th>
+              <th colspan="2" class="th-mattino">MATTINO <span class="th-meal">colazione 8.30</span></th>
+              <th colspan="3" class="th-pomeriggio">POMERIGGIO <span class="th-meal">pranzo 13.00</span></th>
+              <th class="th-sera">SERA <span class="th-meal">cena 20.00</span></th>
+            </tr>
+            <tr>
+              <th class="th-slot">dalle 9.00<br>alle 10.30</th>
+              <th class="th-slot">dalle 11.00<br>alle 12.00</th>
+              <th class="th-slot">dalle 13.00<br>alle 14.30</th>
+              <th class="th-slot">dalle 14.30<br>alle 16.00</th>
+              <th class="th-slot">dalle 17.30<br>alle 18.30</th>
+              <th class="th-slot">dalle 21.30</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- DOMENICA 19 — ARRIVO -->
+            <tr>
+              <td class="day-cell">Dom 19<small>Arrivo</small></td>
+              <td class="cell"><div class="act a-routine">—</div></td>
+              <td class="cell"><div class="act a-special">Arrivo e sistemazione</div></td>
+              <td class="cell"><div class="act a-spiaggia">Spiaggia<small>vediamo chi sa nuotare</small></div></td>
+              <td class="cell" colspan="2"><div class="act a-spiaggia">Spiaggia<small>giochi in libertà</small></div></td>
+              <td class="cell"><div class="act a-serata">Conosciamoci!<small>regole, gruppi e balli</small></div></td>
+            </tr>
+            <!-- LUNEDÌ 20 -->
+            <tr>
+              <td class="day-cell">Lun 20</td>
+              <td class="cell"><div class="act a-lab">Gruppo Musica<small>Gruppo acro-sport</small></div></td>
+              <td class="cell"><div class="act a-spiaggia">Spiaggia e giochi</div></td>
+              <td class="cell"><div class="act a-relax">Riposo</div></td>
+              <td class="cell"><div class="act a-lab">Gruppo Arte<small>Gruppo intercultura</small></div></td>
+              <td class="cell"><div class="act a-spiaggia">Giochi in spiaggia</div></td>
+              <td class="cell"><div class="act a-serata">Serata Imprudente!</div></td>
+            </tr>
+            <!-- MARTEDÌ 21 -->
+            <tr>
+              <td class="day-cell">Mar 21</td>
+              <td class="cell"><div class="act a-lab">Gruppo Musica<small>Gruppo acro-sport</small></div></td>
+              <td class="cell"><div class="act a-spiaggia">Spiaggia e giochi</div></td>
+              <td class="cell"><div class="act a-relax">Riposo</div></td>
+              <td class="cell"><div class="act a-lab">Gruppo Arte<small>Gruppo intercultura</small></div></td>
+              <td class="cell"><div class="act a-spiaggia">Giochi in spiaggia</div></td>
+              <td class="cell"><div class="act a-serata">Quizzone</div></td>
+            </tr>
+            <!-- MERCOLEDÌ 22 — MIRABILANDIA -->
+            <tr>
+              <td class="day-cell">Mer 22<small>Gita</small></td>
+              <td class="cell" colspan="5"><div class="act a-mirab">MIRABILANDIA</div></td>
+              <td class="cell"><div class="act a-serata">Karaoke</div></td>
+            </tr>
+            <!-- GIOVEDÌ 23 -->
+            <tr>
+              <td class="day-cell">Gio 23</td>
+              <td class="cell"><div class="act a-lab">Gruppo Musica<small>Gruppo acro-sport</small></div></td>
+              <td class="cell"><div class="act a-spiaggia">Spiaggia e giochi</div></td>
+              <td class="cell"><div class="act a-relax">Riposo</div></td>
+              <td class="cell"><div class="act a-lab">Gruppo Arte<small>Gruppo intercultura</small></div></td>
+              <td class="cell"><div class="act a-spiaggia">Giochi in spiaggia</div></td>
+              <td class="cell"><div class="act a-serata">Serata in spiaggia 🏖️</div></td>
+            </tr>
+            <!-- VENERDÌ 24 -->
+            <tr>
+              <td class="day-cell">Ven 24</td>
+              <td class="cell"><div class="act a-lab">Gruppo Musica<small>Gruppo acro-sport</small></div></td>
+              <td class="cell" colspan="2"><div class="act a-festival">Preparazione Festival</div></td>
+              <td class="cell"><div class="act a-lab">Gruppo Arte<small>Gruppo intercultura</small></div></td>
+              <td class="cell"><div class="act a-routine">—</div></td>
+              <td class="cell"><div class="act a-festival">Il Festival delle abilità differenti</div></td>
+            </tr>
+            <!-- SABATO 25 -->
+            <tr>
+              <td class="day-cell">Sab 25</td>
+              <td class="cell"><div class="act a-lab">Gruppo Musica<small>Gruppo acro-sport</small></div></td>
+              <td class="cell" colspan="3"><div class="act a-festival">Preparazione Festival</div></td>
+              <td class="cell"><div class="act a-routine">—</div></td>
+              <td class="cell"><div class="act a-festival">Il Festival delle abilità differenti</div></td>
+            </tr>
+            <!-- DOMENICA 26 — PARTENZA -->
+            <tr>
+              <td class="day-cell">Dom 26<small>Partenza</small></td>
+              <td class="cell" colspan="6"><div class="act a-special">PARTENZA! 👋</div></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-      <p class="note">🎢 <b>Mercoledì 22</b> si esce per l'intera giornata a <b>Mirabilandia</b>: colazione, partenza, pranzo al parco e rientro in tempo per la cena.</p>
-      <p class="note">Balli di gruppo in spiaggia (negli altri giorni): <b>11:00–11:30</b> e <b>18:00–18:30</b>. Ogni gruppo prepara una <b>performance per l'ultima sera</b> (sabato 25).</p>
-      <p class="note">👋 <b>Domenica 26 luglio</b>: colazione, saluti e <b>partenza</b> in mattinata (fine del campo).</p>
+      <p class="note">🎢 <b>Mercoledì 22</b> si esce per l'intera giornata a <b>Mirabilandia</b> (colazione, partenza e rientro per cena). Il gran finale è <b>«Il Festival delle abilità differenti»</b> (venerdì 24 e sabato 25): ogni gruppo prepara e presenta la propria performance.</p>
 
       <div class="no-print" style="text-align:center;margin-top:18px">
         <button onclick="window.print()" style="background:var(--magenta);color:#fff;border:0;padding:12px 26px;border-radius:999px;font-weight:700;font-size:1rem;cursor:pointer">🖨️ Stampa il tabellone</button>
@@ -67,112 +150,5 @@
   </footer>
 
   <script src="assets/main.js"></script>
-  <script>
-  // ---- Dati del tabellone (facili da modificare) ----
-  var giorni = [
-    { d: "Dom 19", n: "Arrivo" },
-    { d: "Lun 20", n: "" },
-    { d: "Mar 21", n: "" },
-    { d: "Mer 22", n: "Mirabilandia 🎢" },
-    { d: "Gio 23", n: "" },
-    { d: "Ven 24", n: "" },
-    { d: "Sab 25", n: "Saluti" }
-  ];
-
-  // a() = crea una cella attività { testo, sotto, classe }
-  function a(t, s, c) { return { t: t, s: s || "", c: c || "a-routine" }; }
-
-  // Attività standard usate nei giorni feriali
-  var STD = {
-    sveglia:  a("Sveglia", "08:00", "a-routine"),
-    colaz:    a("Colazione", "08:30", "a-pasto"),
-    lab1:     a("Laboratorio", "Grandi e Piccoli", "a-lab"),
-    spiag1:   a("Spiaggia", "balli 11:00", "a-spiaggia"),
-    pranzo:   a("Pranzo", "13:00", "a-pasto"),
-    relax:    a("Attività / Relax", "", "a-relax"),
-    lab2:     a("Laboratorio", "", "a-lab"),
-    spiag2:   a("Spiaggia", "balli 18:00", "a-spiaggia"),
-    cena:     a("Cena", "20:00", "a-pasto"),
-    letto:    a("A letto", "23:00", "a-routine")
-  };
-
-  // Righe: ogni riga ha un orario e una funzione che, dato l'indice del giorno, ritorna la cella
-  var righe = [
-    { ora: "08:00",        get: function(i){ return STD.sveglia; } },
-    { ora: "08:30",        get: function(i){ return STD.colaz; } },
-    { ora: "09:00–10:30",  get: function(i){
-        if (i===0) return a("Arrivo & sistemazione", "accoglienza", "a-special");
-        if (i===3) return a("Partenza per Mirabilandia 🚌", "dopo colazione", "a-gita");
-        if (i===6) return a("Prove performance", "ultimo giorno", "a-special");
-        return STD.lab1;
-      } },
-    { ora: "10:45–12:30",  get: function(i){
-        if (i===0) return a("—", "", "a-routine");
-        if (i===3) return a("Mirabilandia 🎢", "parco divertimenti", "a-gita");
-        return STD.spiag1;
-      } },
-    { ora: "13:00",        get: function(i){
-        if (i===3) return a("Pranzo al parco", "Mirabilandia", "a-gita");
-        return STD.pranzo;
-      } },
-    { ora: "14:30–15:30",  get: function(i){
-        if (i===0) return a("Sistemazione stanze", "", "a-special");
-        if (i===3) return a("Mirabilandia 🎢", "parco divertimenti", "a-gita");
-        return STD.relax;
-      } },
-    { ora: "15:30–16:45",  get: function(i){
-        if (i===0) return a("Conoscenza & regole", "", "a-special");
-        if (i===3) return a("Mirabilandia 🎢", "parco divertimenti", "a-gita");
-        if (i===6) return a("Pulizie & valigie", "", "a-special");
-        return STD.lab2;
-      } },
-    { ora: "16:45–18:45",  get: function(i){
-        if (i===3) return a("Rientro dal parco 🚌", "in tempo per cena", "a-gita");
-        if (i===6) return a("Ultima spiaggia", "balli 18:00", "a-spiaggia");
-        return STD.spiag2;
-      } },
-    { ora: "20:00",        get: function(i){ return STD.cena; } },
-    { ora: "21:00–22:30",  get: function(i){
-        var serate = [
-          a("Presentazioni 🎵", "in struttura", "a-serata"),
-          a("Caccia al tesoro 🗺️", "", "a-serata"),
-          a("Giochi di gruppo 🎲", "", "a-serata"),
-          a("Serata libera / relax 🌙", "dopo la gita", "a-relax"),
-          a("Karaoke 🎶", "", "a-serata"),
-          a("Serata in spiaggia 🏖️", "falò", "a-serata"),
-          a("Sfilata + Restituzione ✨", "performance", "a-special")
-        ];
-        return serate[i];
-      } },
-    { ora: "23:00",        get: function(i){
-        if (i===6) return a("A letto", "ultima notte", "a-routine");
-        return STD.letto;
-      } }
-  ];
-
-  // ---- Render ----
-  (function(){
-    var t = document.getElementById("board");
-    var thead = "<thead><tr><th class='time-col'>Orario</th>";
-    giorni.forEach(function(g){
-      thead += "<th>" + g.d + (g.n ? "<br><small style='font-weight:400;opacity:.8'>" + g.n + "</small>" : "") + "</th>";
-    });
-    thead += "</tr></thead>";
-
-    var tbody = "<tbody>";
-    righe.forEach(function(r){
-      tbody += "<tr><td class='time'>" + r.ora + "</td>";
-      giorni.forEach(function(g, i){
-        var c = r.get(i);
-        tbody += "<td><div class='act " + c.c + "'>" + c.t +
-                 (c.s ? "<small>" + c.s + "</small>" : "") + "</div></td>";
-      });
-      tbody += "</tr>";
-    });
-    tbody += "</tbody>";
-
-    t.innerHTML = thead + tbody;
-  })();
-  </script>
 </body>
 </html>
