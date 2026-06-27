@@ -249,6 +249,41 @@ table.tabellone td.cell          { text-align: center; vertical-align: middle; }
 .room li { font-size: .88rem; }
 .room.empty { border-top-color: var(--bordo); color: var(--grigio); font-style: italic; }
 
+/* ---------- Modulo "Invia info" ---------- */
+.form { display: flex; flex-direction: column; gap: 6px; }
+.form label { font-weight: 600; font-size: .92rem; margin-top: 10px; }
+.form .req { color: var(--rosso); }
+.form input[type="text"],
+.form input[type="email"],
+.form select,
+.form textarea,
+.form input[type="file"] {
+  font-family: var(--font); font-size: .95rem; color: var(--scuro);
+  background: var(--chiaro);
+  border: 1.5px solid var(--bordo); border-radius: var(--raggio-sm);
+  padding: 10px 12px; width: 100%;
+}
+.form textarea { resize: vertical; }
+.form input:focus, .form select:focus, .form textarea:focus {
+  outline: none; border-color: var(--blu); background: #fff;
+}
+.form input[type="file"] { background: #fff; padding: 8px; cursor: pointer; }
+.form .hint { color: var(--grigio); font-size: .8rem; margin-top: 2px; }
+.btn-send {
+  margin-top: 18px; align-self: flex-start;
+  background: var(--magenta); color: #fff; border: 0;
+  font-weight: 700; font-size: 1rem; font-family: var(--font);
+  padding: 12px 26px; border-radius: 999px; cursor: pointer;
+  transition: transform .12s, box-shadow .12s, background .12s;
+}
+.btn-send:hover { transform: translateY(-2px); box-shadow: var(--ombra); }
+.btn-send:disabled { background: var(--grigio); cursor: default; transform: none; box-shadow: none; }
+.form-status { margin: 12px 0 0; font-weight: 600; font-size: .92rem; }
+.form-status.ok  { color: var(--verde); }
+.form-status.err { color: var(--rosso); }
+.howto { padding-left: 20px; margin: 0 0 10px; }
+.howto li { margin-bottom: 6px; }
+
 /* ---------- Footer ---------- */
 footer.site-footer {
   background: var(--scuro); color: #c9c9d6; text-align: center;

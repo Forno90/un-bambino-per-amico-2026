@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Invia informazioni — Campo Estivo 2026</title>
+  <link rel="icon" href="assets/66.png" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.gif" alt="Un Bambino per Amico" />
+        <span class="brand-text"><b>Campo Estivo 2026</b><span>Un Bambino per Amico</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="programma.html">Programma</a>
+        <a href="tabellone.html">Tabellone</a>
+        <a href="laboratori.html">Laboratori</a>
+        <a href="gruppi.html">Gruppi</a>
+        <a href="educatori.html">Educatori</a>
+        <a href="stanze.html">Stanze</a>
+        <a href="info.html">Organizzazione</a>
+        <a href="contributi.html">Invia info</a>
+      </nav>
+    </div>
+  </header>
+  <div class="rainbow-bar"></div>
+
+  <main>
+    <section class="section">
+      <h1>📨 Invia informazioni</h1>
+      <p class="lead">Sei un organizzatore? Da qui puoi mandarmi aggiornamenti, appunti e allegati
+      (configurazione delle camere, elenco aggiornato dei ragazzi, chi ha pagato, ecc.).
+      Riceverò una mail e aggiornerò il portale.</p>
+    </section>
+
+    <section class="section">
+      <div class="grid-2">
+        <div class="panel">
+          <h2><span class="dot" style="background:var(--magenta)"></span>Modulo</h2>
+
+          <form id="contrib-form" class="form"
+                action="/api/contributi" method="POST" enctype="multipart/form-data">
+            <!-- Anti-spam (honeypot): lasciare vuoto -->
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <label for="f-nome">Il tuo nome <span class="req">*</span></label>
+            <input id="f-nome" name="nome" type="text" required placeholder="Es. Paolo Rossi" />
+
+            <label for="f-email">La tua email (per risponderti)</label>
+            <input id="f-email" name="email" type="email" placeholder="nome@email.it" />
+
+            <label for="f-tipo">Di cosa si tratta? <span class="req">*</span></label>
+            <select id="f-tipo" name="tipo" required>
+              <option value="" disabled selected>Scegli…</option>
+              <option>Configurazione finale delle camere</option>
+              <option>Elenco aggiornato dei ragazzi</option>
+              <option>Pagamenti (chi ha pagato / chi no)</option>
+              <option>Educatori e gruppi</option>
+              <option>Programma / attività / serate</option>
+              <option>Laboratori</option>
+              <option>Altro</option>
+            </select>
+
+            <label for="f-msg">Messaggio <span class="req">*</span></label>
+            <textarea id="f-msg" name="messaggio" rows="6" required
+              placeholder="Scrivi qui le informazioni, le modifiche da fare o le note…"></textarea>
+
+            <label for="f-file">Allegati (facoltativi)</label>
+            <input id="f-file" name="attachment" type="file" multiple
+              accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.txt,.jpg,.jpeg,.png,.heic,.zip" />
+            <small class="hint">Puoi allegare più file (PDF, Word, Excel, foto…).
+            Dimensione totale massima <b>10 MB</b> per invio; per file più pesanti usa uno <code>.zip</code>
+            o invia in due volte.</small>
+
+            <button type="submit" class="btn-send">Invia 📩</button>
+            <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <div class="panel">
+          <h2><span class="dot" style="background:var(--verde)"></span>Come funziona</h2>
+          <ol class="howto">
+            <li>Compila il modulo e allega eventuali file.</li>
+            <li>Premi <b>Invia</b>: il messaggio arriva via email a Paolo.</li>
+            <li>Paolo aggiorna le pagine del portale con le informazioni ricevute.</li>
+          </ol>
+
+          <h3>Cosa è utile mandare</h3>
+          <ul>
+            <li>🛏️ <b>Configurazione finale delle camere</b> (chi dorme dove).</li>
+            <li>👧🧒 <b>Elenco aggiornato dei ragazzi</b> con gruppo/età.</li>
+            <li>💶 <b>Stato pagamenti</b> (chi ha pagato e chi no).</li>
+            <li>🧑‍🏫 <b>Abbinamento educatori ↔ gruppi</b>.</li>
+            <li>🗓️ Modifiche a <b>programma</b>, <b>serate</b> o <b>laboratori</b>.</li>
+          </ul>
+
+          <div class="note">
+            I dati inviati vengono usati solo per organizzare il campo. Questa è un'area interna,
+            non indicizzata sui motori di ricerca.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <img src="assets/logo.gif" alt="Un Bambino per Amico" /><br />
+    <b>Un Bambino per Amico</b> — Campo Estivo 2026<br />
+    Portale organizzativo interno · <a href="https://www.unbambinoperamico.org/" target="_blank" rel="noopener">unbambinoperamico.org</a>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

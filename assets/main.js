@@ -31,4 +31,42 @@ document.addEventListener("DOMContentLoaded", function () {
     tick();
     setInterval(tick, 60000);
   }
+
+  // Modulo "Invia info" — invio all'endpoint Cloudflare /api/contributi
+  var form = document.getElementById("contrib-form");
+  if (form) {
+    var status = document.getElementById("form-status");
+    var btn = form.querySelector(".btn-send");
+    var btnLabel = btn ? btn.textContent : "";
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      status.className = "form-status";
+      status.textContent = "Invio in corso…";
+      if (btn) { btn.disabled = true; btn.textContent = "Invio…"; }
+
+      fetch(form.getAttribute("action"), {
+        method: "POST",
+        body: new FormData(form)
+      })
+        .then(function (r) { return r.json().catch(function () { return {}; }); })
+        .then(function (data) {
+          if (data && data.success) {
+            status.className = "form-status ok";
+            status.textContent = "✅ Inviato! Grazie, Paolo ha ricevuto le informazioni.";
+            form.reset();
+          } else {
+            status.className = "form-status err";
+            status.textContent = "❌ " + ((data && data.message) || "Invio non riuscito. Riprova.");
+          }
+        })
+        .catch(function () {
+          status.className = "form-status err";
+          status.textContent = "❌ Errore di connessione. Controlla la rete e riprova.";
+        })
+        .then(function () {
+          if (btn) { btn.disabled = false; btn.textContent = btnLabel; }
+        });
+    });
+  }
 });
